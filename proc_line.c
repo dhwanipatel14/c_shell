@@ -17,10 +17,11 @@ void procline(void)
 
 	for (;;)
 	{
+	//checking tokentype ofcommand entered by user 
 	   switch (toktype = gettok(&arg[narg])) {
+		//If command is valid agrgument increment the counter.
 		case ARG:
 			if (narg < MAXARG){
-			    //Here i am adding printf statement because the case ARG will execute if the token was argument character.
                 //printf("arg[narg=%d] = %s\n",narg,arg[narg]);
                 narg++;
 			}
@@ -32,9 +33,11 @@ void procline(void)
 				type = BACKGROUND;
 			else
 				type = FOREGROUND;
+			 //Condition to append null character at the end.
 			if (narg != 0)
 			{
 				arg[narg] = NULL;
+				//Passing arguments and its type to runcommand to execute it.
 				runcommand(arg, type);
 			}
 			if (toktype == EOL)
@@ -42,8 +45,5 @@ void procline(void)
 			narg = 0;
 			break;
 	  }
-	  //added for assignment 3
-//          if (!strcmp(arg[narg-1],"exit"))
-//		exit(5);
 	}
 }
